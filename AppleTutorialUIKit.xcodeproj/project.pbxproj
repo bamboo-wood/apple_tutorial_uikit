@@ -14,6 +14,8 @@
 		DF7245482A2AE66700AA0F24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF7245472A2AE66700AA0F24 /* Assets.xcassets */; };
 		DF72454B2A2AE66700AA0F24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF7245492A2AE66700AA0F24 /* LaunchScreen.storyboard */; };
 		DF7245542A2AEA9500AA0F24 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7245532A2AEA9500AA0F24 /* Reminder.swift */; };
+		DF7245562A2B00E900AA0F24 /* Date+Today.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7245552A2B00E900AA0F24 /* Date+Today.swift */; };
+		DF7245592A2B02C000AA0F24 /* ReminderListViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7245582A2B02C000AA0F24 /* ReminderListViewController+DataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		DF72454A2A2AE66700AA0F24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DF72454C2A2AE66700AA0F24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF7245532A2AEA9500AA0F24 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		DF7245552A2B00E900AA0F24 /* Date+Today.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Today.swift"; sourceTree = "<group>"; };
+		DF7245582A2B02C000AA0F24 /* ReminderListViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderListViewController+DataSource.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +65,7 @@
 				DF7245522A2AEA7300AA0F24 /* Models */,
 				DF72453E2A2AE66600AA0F24 /* AppDelegate.swift */,
 				DF7245402A2AE66600AA0F24 /* SceneDelegate.swift */,
-				DF7245422A2AE66600AA0F24 /* ReminderListViewController.swift */,
+				DF7245572A2B027C00AA0F24 /* ListViewController */,
 				DF7245442A2AE66600AA0F24 /* Main.storyboard */,
 				DF7245472A2AE66700AA0F24 /* Assets.xcassets */,
 				DF7245492A2AE66700AA0F24 /* LaunchScreen.storyboard */,
@@ -74,8 +78,18 @@
 			isa = PBXGroup;
 			children = (
 				DF7245532A2AEA9500AA0F24 /* Reminder.swift */,
+				DF7245552A2B00E900AA0F24 /* Date+Today.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		DF7245572A2B027C00AA0F24 /* ListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DF7245422A2AE66600AA0F24 /* ReminderListViewController.swift */,
+				DF7245582A2B02C000AA0F24 /* ReminderListViewController+DataSource.swift */,
+			);
+			path = ListViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,8 +165,10 @@
 			files = (
 				DF7245432A2AE66600AA0F24 /* ReminderListViewController.swift in Sources */,
 				DF72453F2A2AE66600AA0F24 /* AppDelegate.swift in Sources */,
+				DF7245562A2B00E900AA0F24 /* Date+Today.swift in Sources */,
 				DF7245412A2AE66600AA0F24 /* SceneDelegate.swift in Sources */,
 				DF7245542A2AEA9500AA0F24 /* Reminder.swift in Sources */,
+				DF7245592A2B02C000AA0F24 /* ReminderListViewController+DataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
