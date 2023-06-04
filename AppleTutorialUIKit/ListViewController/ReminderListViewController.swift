@@ -17,7 +17,7 @@ class ReminderListViewController: UICollectionViewController {
         
         collectionView.collectionViewLayout = createListLayout()
         configureDataSource()
-        applySnapshot()
+        updateSnapshot()
     }
     
     private func configureDataSource() {
@@ -37,12 +37,5 @@ class ReminderListViewController: UICollectionViewController {
         listConfiguration.showsSeparators = false
         listConfiguration.backgroundColor = .clear
         return UICollectionViewCompositionalLayout.list(using: listConfiguration)
-    }
-    
-    private func applySnapshot() {
-        var snapshot = Snapshot()
-        snapshot.appendSections([0])
-        snapshot.appendItems(reminders.map { $0.id })
-        dataSource.apply(snapshot)
     }
 }
