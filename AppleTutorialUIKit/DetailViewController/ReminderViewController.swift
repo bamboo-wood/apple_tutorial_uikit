@@ -11,11 +11,20 @@ class ReminderViewController: UICollectionViewController {
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, Row>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Row>
     
-    var reminder: Reminder
+    var reminder: Reminder {
+        didSet {
+            onChange(reminder)
+        }
+    }
+    
+    var workingReminder: Reminder
+    var onChange: (Reminder) -> Void
     private var dataSource: DataSource!
     
-    init(reminder: Reminder) {
+    init(reminder: Reminder, onChange: @escaping (Reminder) -> Void) {
         self.reminder = reminder
+        self.workingReminder = reminder
+        self.onChange = onChange
         super.init(collectionViewLayout: Self.createListLayout())
     }
     
@@ -40,7 +49,7 @@ class ReminderViewController: UICollectionViewController {
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        editing ? updateSnapshotForEditing() : updateSnapshotForViewing()
+        editing ? prepareForEditing() : prepareForViewing()
     }
     
     func cellRegistrationHandler(cell: UICollectionViewListCell, indexPath: IndexPath, row: Row) {
@@ -69,6 +78,17 @@ class ReminderViewController: UICollectionViewController {
         return UICollectionViewCompositionalLayout.list(using: listConfiguration)
     }
     
+    @objc func didCancelEdit() {
+        workingReminder = reminder
+        setEditing(false, animated: true)
+    }
+    
+    private func prepareForEditing() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .cancel, target: self, action: #selector(didCancelEdit))
+        updateSnapshotForEditing()
+    }
+    
     private func updateSnapshotForEditing() {
         var snapshot = Snapshot()
         snapshot.appendSections([.title, .date, .notes])
@@ -78,6 +98,14 @@ class ReminderViewController: UICollectionViewController {
         dataSource.apply(snapshot)
     }
     
+    private func prepareForViewing() {
+        navigationItem.leftBarButtonItem = nil
+        if workingReminder != reminder {
+            reminder = workingReminder
+        }
+        updateSnapshotForViewing()
+    }
+    
     private func updateSnapshotForViewing() {
         var snapshot = Snapshot()
         snapshot.appendSections([.view])
@@ -85,6 +113,8 @@ class ReminderViewController: UICollectionViewController {
         dataSource.apply(snapshot)
     }
     
+    // Viewingの場合は、indexPath.sectionには[0]のみが設定される
+    // Editingの場合は、indexPath.sectionには[0, 1, 2]が設定される
     private func section(for indexPath: IndexPath) -> Section {
         let sectionNumber = isEditing ? indexPath.section + 1 : indexPath.section
         guard let section = Section(rawValue: sectionNumber) else {
