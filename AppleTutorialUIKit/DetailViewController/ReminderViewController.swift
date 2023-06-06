@@ -17,6 +17,7 @@ class ReminderViewController: UICollectionViewController {
         }
     }
     
+    var isAddingNewReminder = false
     var workingReminder: Reminder
     var onChange: (Reminder) -> Void
     private var dataSource: DataSource!
@@ -49,7 +50,16 @@ class ReminderViewController: UICollectionViewController {
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        editing ? prepareForEditing() : prepareForViewing()
+        
+        if editing {
+            prepareForEditing()
+        } else {
+            if isAddingNewReminder {
+                onChange(workingReminder)
+            } else {
+                prepareForViewing()
+            }
+        }
     }
     
     func cellRegistrationHandler(cell: UICollectionViewListCell, indexPath: IndexPath, row: Row) {

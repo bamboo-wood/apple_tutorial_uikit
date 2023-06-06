@@ -107,9 +107,9 @@
 		DF72453D2A2AE66600AA0F24 /* AppleTutorialUIKit */ = {
 			isa = PBXGroup;
 			children = (
-				DF7245522A2AEA7300AA0F24 /* Models */,
 				DF72453E2A2AE66600AA0F24 /* AppDelegate.swift */,
 				DF7245402A2AE66600AA0F24 /* SceneDelegate.swift */,
+				DF7245522A2AEA7300AA0F24 /* Models */,
 				DF7245572A2B027C00AA0F24 /* ListViewController */,
 				DF621AA92A2D5E3800CD53B9 /* DetailViewController */,
 				DF621AB02A2D827400CD53B9 /* ContentViews */,
