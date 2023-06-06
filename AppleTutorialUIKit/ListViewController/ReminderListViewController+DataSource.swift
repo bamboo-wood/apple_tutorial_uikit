@@ -19,10 +19,11 @@ extension ReminderListViewController {
         NSLocalizedString("Not completed", comment: "Reminder not completed value")
     }
     
-    func updateSnapshot(reloading ids: [Reminder.ID] = []) {
+    func updateSnapshot(reloading idsThatChanged: [Reminder.ID] = []) {
+        let ids = idsThatChanged.filter { id in filteredReminders.contains(where: { $0.id == id }) }
         var snapshot = Snapshot()
         snapshot.appendSections([0])
-        snapshot.appendItems(reminders.map({$0.id}))
+        snapshot.appendItems(filteredReminders.map({$0.id}))
         if !ids.isEmpty {
             snapshot.reloadItems(ids)
         }
@@ -30,7 +31,7 @@ extension ReminderListViewController {
     }
     
     func cellRegistrationHandler(_ cell: UICollectionViewListCell, for indexPath: IndexPath, with itemIdentifier: Reminder.ID) {
-        let reminder = reminders[indexPath.item]
+        let reminder = filteredReminders[indexPath.item]
         var contentConfiguration = cell.defaultContentConfiguration()
         contentConfiguration.text = reminder.title
         contentConfiguration.secondaryText = reminder.dueDate.dayAndTimeText
